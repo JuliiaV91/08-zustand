@@ -1,4 +1,25 @@
+import { Metadata } from 'next';
 import css from './page.module.css';
+
+export const metadata: Metadata = {
+  title: 'Page Not Found | NoteHub',
+  description: 'The requested page does not exist in NoteHub.',
+  openGraph: {
+    title: 'Page Not Found | NoteHub',
+    description: 'The requested page does not exist in NoteHub.',
+    // url: 'https://07-routing-nextjs-eight-livid.vercel.app/not-found',
+    siteName: 'NoteHub',
+    images: [
+      {
+        url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Page Not Found | NoteHub',
+      },
+    ],
+    type: 'website',
+  },
+};
 
 export default function NotFound() {
   return (
