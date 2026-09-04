@@ -1,13 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { fetchNotes } from '../../../../lib/api';
 import { useDebouncedCallback } from 'use-debounce';
+
+import { fetchNotes } from '../../../../lib/api';
 import NoteList from '../../../../components/NoteList/NoteList';
 import Pagination from '../../../../components/Pagination/Pagination';
-// import Modal from '../../components/Modal/Modal';
-import NoteForm from '../../../../components/NoteForm/NoteForm';
 import SearchBox from '../../../../components/SearchBox/SearchBox';
 import type { NoteTag } from '@/types/note';
 
@@ -19,7 +19,6 @@ interface NotesClientProps {
 
 export default function NotesClient({ tag }: NotesClientProps) {
   const [page, setPage] = useState(1);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchInput, setSearchInput] = useState('');
   const [search, setSearch] = useState('');
 
@@ -57,15 +56,10 @@ export default function NotesClient({ tag }: NotesClientProps) {
           />
         )}
 
-        <button className={css.button} onClick={() => setIsModalOpen(true)}>
+        <Link href="/notes/action/create" className={css.button}>
           Create note +
-        </button>
+        </Link>
       </header>
-      {isModalOpen && (
-        // <Modal onClose={() => setIsModalOpen(false)}>
-        <NoteForm onCancel={() => setIsModalOpen(false)} />
-        // </Modal>
-      )}
 
       {data && data.notes.length > 0 && <NoteList notes={data.notes} />}
     </div>
